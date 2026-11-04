@@ -1,0 +1,30 @@
+{
+  "name": "@bjo/mcp",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "description": "Local stdio MCP adapter for BJO integration tasks (create, get, revision, update).",
+  "bin": {
+    "bjo-mcp": "bin/bjo-mcp.mjs"
+  },
+  "files": [
+    "bin/bjo-mcp.mjs",
+    "dist/api.js",
+    "dist/config.js",
+    "dist/contracts.js",
+    "dist/main.js",
+    "dist/revisions.js",
+    "dist/server.js",
+    "LICENSE",
+    "README.md",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "engines": {
+    "node": "^22.0.0 || ^24.0.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "2.3.1",
+    "zod": "4.6.7"
+  }
+}

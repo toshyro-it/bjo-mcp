@@ -1,0 +1,157 @@
+{
+  "schemaVersion": 1,
+  "tool": "tools/export-public.mjs@1",
+  "package": "@bjo/mcp",
+  "version": "0.1.0",
+  "license": "MIT",
+  "sourceCommit": "1f02b136bc5a75fb141fcb6d8ae858736ea19cdc",
+  "typescript": "5.9.3",
+  "inputs": [
+    {
+      "path": "package.json",
+      "blob": "2236a5a41756151148b9eedee96a5a89580e8272",
+      "sha256": "dabceba99b548693e00bb978ab96238229f978cacadd10894e64cc218915a97e"
+    },
+    {
+      "path": "package-lock.json",
+      "blob": "07f541935bc4a6684ff8fbbdad4e63c7e63ce105",
+      "sha256": "cc8009c73c85fa6300ac9eeb1d1475f3797ae5b8a0ebebd5b4859e7aca78b5d3"
+    },
+    {
+      "path": "tsconfig.json",
+      "blob": "761683a35b36e90aa84f7c8ffcb0bb566c01f4cc",
+      "sha256": "febbb76588253ccda30f9e8538fe134c3705c56c74dbe158e2d5bb0d400af269"
+    },
+    {
+      "path": "LICENSE",
+      "blob": "27a694dd69aab6c3d9c520922a46186df74367f7",
+      "sha256": "e54c87a644804ce2c0e7a2ccbcaac60d291d9f8365e827789bf780baccfb5dd8"
+    },
+    {
+      "path": "bin/bjo-mcp.mjs",
+      "blob": "525bc83296523ca7f5f3dd76a3c094b5a3cf3ea5",
+      "sha256": "6ddcf61b7c10c0c55d59fe07bbff1dd1c8a8ddfc030c190f6a5fbf7db38e9a79"
+    },
+    {
+      "path": "src/api.ts",
+      "blob": "9817b9d66a6d2f379b5c46ec34aef7ad9cd64b00",
+      "sha256": "ba7133e4cbcfd3633caf7b03c64ae48899a082312ce33f2f79b985a2fafe3972"
+    },
+    {
+      "path": "src/config.ts",
+      "blob": "6f937815e4bcf82c4adafc37514cd11c41c493eb",
+      "sha256": "c9d8d0e56ee001329e6a69110915f037804e1e1d321e6679f7751b9712253010"
+    },
+    {
+      "path": "src/contracts.ts",
+      "blob": "3ae4ff0904812ecbd778be6fcc18d8da8a4b49cb",
+      "sha256": "983cc408182ab2ab7a30592435e903e38a9998fd7c32140bbef0c3f50a438d08"
+    },
+    {
+      "path": "src/main.ts",
+      "blob": "87bb129e73eedab526b220effdb500f144f4c41d",
+      "sha256": "cbb67a588eb1d1b0d726a2c3921e4d7caea50e35be6c360e18f582b60cc19ebf"
+    },
+    {
+      "path": "src/revisions.ts",
+      "blob": "8cb359b4e344eadab52addc8cd46f1d57335030b",
+      "sha256": "b41dc807ded64a406061a941f72ad4add9eac730336777fc00a064ba93c4fe12"
+    },
+    {
+      "path": "src/server.ts",
+      "blob": "366caf7afc7f29abc6da59889c684fbb9d58a8ac",
+      "sha256": "5a38e6a69055aa5c655b196d3f8be086ad8cfc857fee3a231053303986a352bc"
+    },
+    {
+      "path": "distribution/README.public.md",
+      "blob": "5fea8e345b9b827542dc998fd82dd427d2c728ae",
+      "sha256": "bcf207a238bd831a71773b827f0b065d3c39c440f135fcf5187ca9682453b52a"
+    },
+    {
+      "path": "distribution/THIRD_PARTY_NOTICES.md",
+      "blob": "e1d90709967fd4f64a9994a80366e066c4989ae9",
+      "sha256": "d553a53c627cc5654593c233f03bd4a482d139b06a78d804fb0c81d10f5f8c14"
+    },
+    {
+      "path": "distribution/release/VERSION",
+      "blob": "6e8bf73aa550d4c57f6f35830f1bcdc7a4a62f38",
+      "sha256": "e9dd8507f4bf0c6f42458e41aea833ad0bd3f6127272335eee9bf4d58541ed67"
+    },
+    {
+      "path": "distribution/release/RELEASE_NOTES.md",
+      "blob": "8c039afa832eda2f0c5e57af2072b4aaaf9add34",
+      "sha256": "2836e2a54b9612a2e40d73928bf840e60f177c6c39b63cdfb69341e63c032769"
+    },
+    {
+      "path": "distribution/release/LICENSE_REVIEW.md",
+      "blob": "420b77dcbe2709fe7a9fae328c28e8dc6cbbe1ce",
+      "sha256": "50b82a0796ecbdbe0b5d1e1bf34caad5e57f6f340ea81a367be8090885f05958"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "bin/bjo-mcp.mjs",
+      "bytes": 46,
+      "sha256": "6ddcf61b7c10c0c55d59fe07bbff1dd1c8a8ddfc030c190f6a5fbf7db38e9a79"
+    },
+    {
+      "path": "dist/api.js",
+      "bytes": 8515,
+      "sha256": "d972c62ab6992820d311887ff9fcd16220b06f83c7e8b20e375a71672f1b1542"
+    },
+    {
+      "path": "dist/config.js",
+      "bytes": 1170,
+      "sha256": "5a7a63a3c9369510cebd812f2ed002fb8895659d84140f9c2f7d4242d8b1cfd7"
+    },
+    {
+      "path": "dist/contracts.js",
+      "bytes": 10526,
+      "sha256": "ed2dc9ddf1072a01aa54d6120bb972dcde92a82913cc24f995dd4bee01d08722"
+    },
+    {
+      "path": "dist/main.js",
+      "bytes": 1532,
+      "sha256": "518cf8a46555f77805b1375244e73da4a03b698b2659c72eb5d1a677ddab371d"
+    },
+    {
+      "path": "dist/revisions.js",
+      "bytes": 4703,
+      "sha256": "385a0465e4bfbf0d67064f96aabf6c0d6bd8ccac4bb518ca7e2a3b8c87978a0a"
+    },
+    {
+      "path": "dist/server.js",
+      "bytes": 4953,
+      "sha256": "59948af92859d4a6f1d83cd2338a14da561437666f1b21a36d80d70a26ba5dce"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1093,
+      "sha256": "e54c87a644804ce2c0e7a2ccbcaac60d291d9f8365e827789bf780baccfb5dd8"
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 2116,
+      "sha256": "8c0f193b6328492b095d09ac7a7d66563d31ab3f99d3b0ea7ce886d3da6aadca"
+    },
+    {
+      "path": "package.json",
+      "bytes": 635,
+      "sha256": "d928086d452c7d066635244ca22c3ded03eeaec18235c2e24c4fc0785ea73854"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3622,
+      "sha256": "bcf207a238bd831a71773b827f0b065d3c39c440f135fcf5187ca9682453b52a"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "bytes": 1161,
+      "sha256": "d553a53c627cc5654593c233f03bd4a482d139b06a78d804fb0c81d10f5f8c14"
+    }
+  ],
+  "publicationAuthorized": true,
+  "firstExposureApproved": false,
+  "licenseReview": "MCP-LIC-01: closed 2026-11-02",
+  "notes": "Public tree staged by allowlist from immutable git objects. No tag, release or remote push performed."
+}
