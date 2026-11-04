@@ -2,20 +2,20 @@
   "schemaVersion": 1,
   "tool": "tools/export-public.mjs@1",
   "package": "@bjo/mcp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
-  "sourceCommit": "1f02b136bc5a75fb141fcb6d8ae858736ea19cdc",
+  "sourceCommit": "a80a91aaee1b9bcd6db9cfcd413f8c45291b1c42",
   "typescript": "5.9.3",
   "inputs": [
     {
       "path": "package.json",
-      "blob": "2236a5a41756151148b9eedee96a5a89580e8272",
-      "sha256": "dabceba99b548693e00bb978ab96238229f978cacadd10894e64cc218915a97e"
+      "blob": "1955c1dbe34f318783ff195784400c496897f548",
+      "sha256": "572e52664d744d94b0b7b084281add46d84270c6abe060120f0a17bc8d4c439d"
     },
     {
       "path": "package-lock.json",
-      "blob": "07f541935bc4a6684ff8fbbdad4e63c7e63ce105",
-      "sha256": "cc8009c73c85fa6300ac9eeb1d1475f3797ae5b8a0ebebd5b4859e7aca78b5d3"
+      "blob": "ac3bd478fea3410dd9d69c56147c044b83a4e5c5",
+      "sha256": "639cf0d2bef885d7114a260faf022bb77bd77af80bd909a56f2033dbfd4b82a5"
     },
     {
       "path": "tsconfig.json",
@@ -64,8 +64,8 @@
     },
     {
       "path": "distribution/README.public.md",
-      "blob": "5fea8e345b9b827542dc998fd82dd427d2c728ae",
-      "sha256": "bcf207a238bd831a71773b827f0b065d3c39c440f135fcf5187ca9682453b52a"
+      "blob": "fd243cede3cf032f4b64f7b375850aa2038c370b",
+      "sha256": "951e8c7c52ab207150dd06d2fd378e7fbb9881e7d04cdf88dfb66ba1ff80d06a"
     },
     {
       "path": "distribution/THIRD_PARTY_NOTICES.md",
@@ -74,13 +74,13 @@
     },
     {
       "path": "distribution/release/VERSION",
-      "blob": "6e8bf73aa550d4c57f6f35830f1bcdc7a4a62f38",
-      "sha256": "e9dd8507f4bf0c6f42458e41aea833ad0bd3f6127272335eee9bf4d58541ed67"
+      "blob": "17e51c385ea382d4f2ef124b7032c1604845622d",
+      "sha256": "80447316529fc62014fbaa047fb67c51ac30e32830cda370405349d8d66d196c"
     },
     {
       "path": "distribution/release/RELEASE_NOTES.md",
-      "blob": "8c039afa832eda2f0c5e57af2072b4aaaf9add34",
-      "sha256": "2836e2a54b9612a2e40d73928bf840e60f177c6c39b63cdfb69341e63c032769"
+      "blob": "bcf8839bee7f0bcabe6addb052a13d94acf74d9c",
+      "sha256": "ce25c11cac14551a91cfa84cdb7a8190387729b6a92d3d605a00da123b064139"
     },
     {
       "path": "distribution/release/LICENSE_REVIEW.md",
@@ -132,17 +132,17 @@
     {
       "path": "package-lock.json",
       "bytes": 2116,
-      "sha256": "8c0f193b6328492b095d09ac7a7d66563d31ab3f99d3b0ea7ce886d3da6aadca"
+      "sha256": "e58fa4b5c6943d98c80b7ff4a50b0803ca120e9ac50b28ee006502fb44473b4f"
     },
     {
       "path": "package.json",
       "bytes": 635,
-      "sha256": "d928086d452c7d066635244ca22c3ded03eeaec18235c2e24c4fc0785ea73854"
+      "sha256": "c907a665127c75eb884994cd7d6c54d38c763c8762ee0e7ab30333ee5a183a15"
     },
     {
       "path": "README.md",
-      "bytes": 3622,
-      "sha256": "bcf207a238bd831a71773b827f0b065d3c39c440f135fcf5187ca9682453b52a"
+      "bytes": 3733,
+      "sha256": "951e8c7c52ab207150dd06d2fd378e7fbb9881e7d04cdf88dfb66ba1ff80d06a"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",

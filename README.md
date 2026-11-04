@@ -1,8 +1,9 @@
 # BJO MCP
 
-Versão atual: **0.1.0** — primeira versão pública. Séries `0.x` não prometem
-estabilidade de contrato; mudanças incompatíveis podem ocorrer em versões menores
-seguintes.
+Versão atual: **0.1.1** — release de manutenção, sem mudança funcional em
+relação a `0.1.0`: mesmas quatro ferramentas, mesmos requisitos, mesma instalação.
+Séries `0.x` não prometem estabilidade de contrato; mudanças incompatíveis podem
+ocorrer em versões menores seguintes.
 
 Adaptador MCP local (stdio) para tarefas de integração do BJO. Expõe quatro ferramentas:
 
