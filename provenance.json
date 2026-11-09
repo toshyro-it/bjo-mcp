@@ -4,7 +4,7 @@
   "package": "@bjo/mcp",
   "version": "0.1.2",
   "license": "MIT",
-  "sourceCommit": "023e8220b97c64555e366344364471a1dddbdce1",
+  "sourceCommit": "cd33af69da94f1d27f9b9103b9f13cbb61dc2881",
   "typescript": "5.9.3",
   "inputs": [
     {
