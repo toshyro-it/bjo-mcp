@@ -1,4 +1,4 @@
-import { projectRevision, revisionSchema, updateTaskInputSchema } from "./revisions.js";
+import { parseRevisionTag, projectRevision, updateTaskInputSchema } from "./revisions.js";
 import { createTaskInputSchema, getTaskInputSchema, makeOutput, projectResponse, } from "./contracts.js";
 export const REQUEST_BYTE_LIMIT = 65_536;
 export const RESPONSE_BYTE_LIMIT = 262_144;
@@ -8,6 +8,15 @@ const clockDefault = {
     setTimeout: (callback, ms) => setTimeout(callback, ms),
     clearTimeout: handle => clearTimeout(handle),
 };
+/** Named rejection for one failed validation check; carries no wire data. */
+class ResponseFailure extends Error {
+    code;
+    constructor(code) {
+        super(code);
+        this.code = code;
+    }
+}
+function rejectResponse(code) { throw new ResponseFailure(code); }
 export function parseRetryAfter(raw, now) {
     if (raw === null)
         return undefined;
@@ -25,7 +34,7 @@ export function parseRetryAfter(raw, now) {
 }
 /** One request, fixed destination. No ambient fetch, retries, cookies, logging or reconciliation. */
 export function createApiClient(config, dependencies) {
-    const { origin, token } = config; // Capture validated private values; caller mutation cannot redirect in-flight calls.
+    const { origin, token, identityEncoding } = config; // Capture validated private values; caller mutation cannot redirect in-flight calls.
     const request = dependencies.fetch;
     const clock = dependencies.clock ?? clockDefault;
     async function call(operation, raw, signal) {
@@ -53,6 +62,16 @@ export function createApiClient(config, dependencies) {
         let reader;
         let fullyRead = false;
         let sent = false;
+        // One fixed code per failed check; never wire bytes, identity or token.
+        let failure;
+        const report = (code) => { failure ??= code; };
+        const settle = (output, code) => {
+            if (code !== undefined)
+                report(code);
+            if (output.outcome === "invalid_response" && failure !== undefined)
+                dependencies.diagnose?.(failure);
+            return output;
+        };
         // Race both headers and EVERY read, even if injected transport ignores AbortSignal.
         let rejectInterrupted;
         const interrupted = new Promise((_, reject) => {
@@ -71,6 +90,7 @@ export function createApiClient(config, dependencies) {
             const pending = request(url, {
                 method: operation === "REVISION" ? "GET" : operation, redirect: "error", credentials: "omit", signal: controller.signal,
                 headers: { Accept: "application/json", Authorization: `Bearer ${token}`,
+                    ...(identityEncoding ? { "Accept-Encoding": "identity" } : {}),
                     ...(post ? { "Content-Type": "application/json" } : {}), ...(patch ? { "If-Match": patch.expectedRevision } : {}) },
                 ...(body !== undefined ? { body } : {}),
             }).then(received => {
@@ -84,18 +104,27 @@ export function createApiClient(config, dependencies) {
             // Opaque/error Response has status 0, not an observed HTTP status. Do not
             // invent one or let the output validator throw raw diagnostics for it.
             if (!Number.isInteger(response.status) || response.status < 100 || response.status > 599)
-                throw new Error("invalid_response");
+                rejectResponse("bad_status");
             observedStatus = response.status;
             const mime = response.headers.get("content-type")?.split(";", 1)[0]?.trim();
             if (!mime || !/^application\/(?:[a-z0-9!#$&^_.+-]+\+)?json$/i.test(mime))
-                throw new Error("invalid_response");
+                rejectResponse("bad_mime");
             const length = response.headers.get("content-length");
             if (length !== null && (!/^[0-9]+$/.test(length) || Number(length) > RESPONSE_BYTE_LIMIT))
-                throw new Error("invalid_response");
-            if (!response.body)
-                throw new Error("invalid_response");
-            reader = response.body.getReader();
+                rejectResponse("too_large");
+            const stream = response.body;
+            if (!stream)
+                rejectResponse("bad_envelope");
+            reader = stream.getReader();
             const decoder = new TextDecoder("utf-8", { fatal: true });
+            const decode = (chunk, streaming = false) => {
+                try {
+                    return decoder.decode(chunk, { stream: streaming });
+                }
+                catch {
+                    return rejectResponse("bad_utf8");
+                }
+            };
             let bytes = 0;
             let text = "";
             while (true) {
@@ -106,25 +135,39 @@ export function createApiClient(config, dependencies) {
                 }
                 bytes += chunk.value.byteLength;
                 if (bytes > RESPONSE_BYTE_LIMIT)
-                    throw new Error("invalid_response");
-                text += decoder.decode(chunk.value, { stream: true });
+                    rejectResponse("too_large");
+                text += decode(chunk.value, true);
             }
-            text += decoder.decode();
+            text += decode();
             if (controller.signal.aborted)
                 await interrupted;
-            const wire = JSON.parse(text);
-            if (extended && [200, 410, 412, 428].includes(response.status))
-                return projectRevision(response.status, wire, input, operation === "PATCH", response.headers.get("etag"));
-            const output = projectResponse(post ? "POST" : "GET", response.status, wire, input, response.status === 429 ? parseRetryAfter(response.headers.get("retry-after"), clock.now()) : undefined);
-            if (operation === "GET" && output.outcome === "current" && response.headers.has("etag")) {
-                const rev = revisionSchema.safeParse(response.headers.get("etag"));
-                if (!rev.success)
-                    return makeOutput("invalid_response", { httpStatus: response.status });
-                return { ...output, revision: rev.data };
+            let wire;
+            try {
+                wire = JSON.parse(text);
             }
-            return output;
+            catch {
+                rejectResponse("bad_json");
+            }
+            if (extended && [200, 410, 412, 428].includes(response.status))
+                return settle(projectRevision(response.status, wire, input, operation === "PATCH", response.headers.get("etag"), report));
+            const output = projectResponse(post ? "POST" : "GET", response.status, wire, input, response.status === 429 ? parseRetryAfter(response.headers.get("retry-after"), clock.now()) : undefined, report);
+            if (operation === "GET" && output.outcome === "current" && response.headers.has("etag")) {
+                // The body carries no revision on a full read, so the tag is the value.
+                // A weak tag from a compressing edge keeps the same opaque revision.
+                const revision = parseRevisionTag(response.headers.get("etag"));
+                const taskId = output.data?.availability === "available" ? output.data.taskId : undefined;
+                if (revision === undefined)
+                    return settle(makeOutput("invalid_response", { httpStatus: response.status }), "bad_revision_format");
+                if (taskId === undefined || !revision.startsWith(`"task-v1-${taskId.replaceAll("-", "").toLowerCase()}-`))
+                    return settle(makeOutput("invalid_response", { httpStatus: response.status }), "identity_mismatch");
+                return { ...output, revision };
+            }
+            return settle(output);
         }
-        catch {
+        catch (error) {
+            const code = error instanceof ResponseFailure ? error.code : failure;
+            if (code !== undefined)
+                dependencies.diagnose?.(code);
             const outcome = controller.signal.aborted ? timedOut ? "timeout" : "cancelled"
                 : response ? "invalid_response" : "transport_error";
             return makeOutput(outcome, {

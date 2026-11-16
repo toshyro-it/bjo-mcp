@@ -1,7 +1,10 @@
 # BJO MCP
 
-Versão atual: **0.1.2** — release de manutenção, sem mudança funcional em
-relação a `0.1.1`: mesmas quatro ferramentas, mesmos requisitos, mesma instalação.
+Versão atual: **0.1.3** — correção de leitura de revisão. A resposta comprimida
+com validador enfraquecido deixou de derrubar `get_task_revision`, `update_task`
+e `get_task`: a revisão do corpo passa a ser a fonte de verdade e o `ETag` vira
+confirmação. Duas variáveis opcionais novas, ambas com default seguro. As quatro
+ferramentas, os requisitos e a instalação continuam iguais aos de `0.1.2`.
 Séries `0.x` não prometem estabilidade de contrato; mudanças incompatíveis podem
 ocorrer em versões menores seguintes.
 
@@ -45,7 +48,7 @@ node /caminho/para/bjo-mcp/bin/bjo-mcp.mjs
 Este repositório é a distribuição pública. Cada publicação é um commit em `main`,
 e a identidade da versão é o par entre a versão do `package.json` e o commit de
 origem registrado no `provenance.json` gerado na exportação. Não há publicação em
-npm nem tag de release.
+npm; cada versão publicada tem tag anotada no repositório de origem.
 
 ## Configuração
 
@@ -56,6 +59,8 @@ O operador injeta as variáveis no ambiente privado do processo, antes de inicia
 | `BJO_API_URL` | sim | Origem raiz HTTPS da API (host da API, não o frontend). |
 | `BJO_API_TOKEN` | sim | Segredo ASCII sem espaços ou controles. O processo adiciona `Bearer `. |
 | `BJO_MCP_ALLOW_LOOPBACK_HTTP` | não | Ausente equivale a `false`. Aceita apenas `true`/`false`; HTTP só em loopback literal. |
+| `BJO_MCP_IDENTITY_ENCODING` | não | Ausente equivale a `true`. Aceita apenas `true`/`false`; `true` envia `Accept-Encoding: identity` para receber o validador forte. |
+| `BJO_MCP_DIAGNOSTICS` | não | Ausente equivale a `false`. Aceita apenas `true`/`false`; `true` escreve códigos fixos em stderr. |
 
 Credenciais nunca devem aparecer em argumentos de linha de comando, arquivos versionados, logs ou saída padrão. O processo reserva stdout ao protocolo MCP e escreve somente códigos fixos em stderr.
 

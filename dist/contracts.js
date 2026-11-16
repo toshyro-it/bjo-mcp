@@ -141,24 +141,28 @@ export function formatToolResult(output) {
     return { isError: !success.has(parsed.data.outcome), structuredContent: parsed.data,
         content: [{ type: "text", text: JSON.stringify(parsed.data) }] };
 }
-export function projectResponse(operation, httpStatus, wire, input, retryAfterSeconds) {
+export function projectResponse(operation, httpStatus, wire, input, retryAfterSeconds, onInvalid) {
     const post = operation === "POST";
-    const invalid = () => makeOutput("invalid_response", { httpStatus, ...(post ? { submission: "unknown" } : {}) });
+    const invalid = (code) => {
+        onInvalid?.(code);
+        return makeOutput("invalid_response", { httpStatus, ...(post ? { submission: "unknown" } : {}) });
+    };
     const base = upstreamEnvelopeSchema.safeParse(wire);
     if (!base.success || base.data.statusCode !== httpStatus)
-        return invalid();
+        return invalid("bad_envelope");
     if (httpStatus === 200 || httpStatus === 410 || (post && httpStatus === 201)) {
         const parsed = upstreamTaskEnvelopeSchema.safeParse(wire);
         if (!parsed.success)
-            return invalid();
+            return invalid("bad_envelope");
         const data = parsed.data.data;
-        if (data.source !== input.source || data.externalId !== input.externalId
-            || data.availability !== (httpStatus === 410 ? "deleted" : "available"))
-            return invalid();
+        if (data.source !== input.source || data.externalId !== input.externalId)
+            return invalid("identity_mismatch");
+        if (data.availability !== (httpStatus === 410 ? "deleted" : "available"))
+            return invalid("bad_envelope");
         return makeOutput(httpStatus === 410 ? "deleted" : httpStatus === 201 ? "created" : post ? "replay" : "current", { httpStatus, data, ...(post ? { submission: "confirmed" } : {}) });
     }
     if (httpStatus === 400 && !upstreamValidationEnvelopeSchema.safeParse(wire).success)
-        return invalid();
+        return invalid("bad_envelope");
     const errors = { 400: "invalid_input", 401: "unauthorized", 403: "forbidden", 404: "not_found", 429: "rate_limited", 500: "upstream_error", 503: "unavailable" };
     if (post) {
         errors[409] = "conflict";
@@ -166,7 +170,7 @@ export function projectResponse(operation, httpStatus, wire, input, retryAfterSe
     }
     const outcome = errors[httpStatus];
     if (!outcome)
-        return invalid();
+        return invalid("bad_envelope");
     return makeOutput(outcome, { httpStatus,
         ...(post ? { submission: httpStatus >= 500 ? "unknown" : "confirmed" } : {}),
         ...(httpStatus === 429 && retryAfterSeconds !== undefined ? { retryAfterSeconds } : {}), });

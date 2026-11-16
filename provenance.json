@@ -2,20 +2,20 @@
   "schemaVersion": 1,
   "tool": "tools/export-public.mjs@1",
   "package": "@bjo/mcp",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "license": "MIT",
-  "sourceCommit": "cd33af69da94f1d27f9b9103b9f13cbb61dc2881",
+  "sourceCommit": "3d24c6d7b7ad30d63973561bfd8bf8a258f7e267",
   "typescript": "5.9.3",
   "inputs": [
     {
       "path": "package.json",
-      "blob": "9d4f4ae01dde2a917f32a6f9ecf041dd5262767c",
-      "sha256": "f3d36d93735c600a93b585439e86f4970a7ba9c3c59550e4c44c099cd2220f72"
+      "blob": "400dc56731886f5cb7a7242f573aaba4919d8d94",
+      "sha256": "cac684c399bb5a4a71a18ede2dd44984114051698873843eb149df8f7291e25c"
     },
     {
       "path": "package-lock.json",
-      "blob": "1954ccbb269e4f71c0eeb31a948ef6ce4c9b1b64",
-      "sha256": "e6e20c83fc39981c4a8009bc6393bd141e890b25b8e8ae3c9cf0e2887bc56f9a"
+      "blob": "7c074790290e2d211a579536cad584ed7f7c9b39",
+      "sha256": "8d5747a8d00e3b5692e867e8bbcc6bc32230a76b3cbd186e23318b517eed0a3d"
     },
     {
       "path": "tsconfig.json",
@@ -34,28 +34,28 @@
     },
     {
       "path": "src/api.ts",
-      "blob": "9817b9d66a6d2f379b5c46ec34aef7ad9cd64b00",
-      "sha256": "ba7133e4cbcfd3633caf7b03c64ae48899a082312ce33f2f79b985a2fafe3972"
+      "blob": "440751a8381af635973519df2b347ee65b1a663f",
+      "sha256": "5a837163dc32550ff13f4a2d2ecf07cac05b7a206de6534e6b18db2d0097df33"
     },
     {
       "path": "src/config.ts",
-      "blob": "6f937815e4bcf82c4adafc37514cd11c41c493eb",
-      "sha256": "c9d8d0e56ee001329e6a69110915f037804e1e1d321e6679f7751b9712253010"
+      "blob": "c5b28763d95b71090590e0afb2fa5c86d49b380d",
+      "sha256": "56f46af51e798e8b029d4ef400879e481b30a7027c8636a0da40f0fc0a768f7b"
     },
     {
       "path": "src/contracts.ts",
-      "blob": "3ae4ff0904812ecbd778be6fcc18d8da8a4b49cb",
-      "sha256": "983cc408182ab2ab7a30592435e903e38a9998fd7c32140bbef0c3f50a438d08"
+      "blob": "ea871e59c8f0cb29ba160ab3dcb4adb62cd0fa1a",
+      "sha256": "b43c70bba51dcfbc0afd7224d8bafb024e0a6009e49cb28f1d9dbc2a112e7ec6"
     },
     {
       "path": "src/main.ts",
-      "blob": "87bb129e73eedab526b220effdb500f144f4c41d",
-      "sha256": "cbb67a588eb1d1b0d726a2c3921e4d7caea50e35be6c360e18f582b60cc19ebf"
+      "blob": "503b2e1dcb7cbe82115213631c0eab2f117b5df8",
+      "sha256": "a1a36dec7ab2b14d654f69703c93db6e218c7f33ae9b692fa28b09b254459eed"
     },
     {
       "path": "src/revisions.ts",
-      "blob": "8cb359b4e344eadab52addc8cd46f1d57335030b",
-      "sha256": "b41dc807ded64a406061a941f72ad4add9eac730336777fc00a064ba93c4fe12"
+      "blob": "3c5dc5e25fe85147905d1162029f04fb3188c397",
+      "sha256": "b235248fdcbfb8a9239b3062bff7a86622bfd0a65ced5b9a3ef783e58c04a115"
     },
     {
       "path": "src/server.ts",
@@ -64,8 +64,8 @@
     },
     {
       "path": "distribution/README.public.md",
-      "blob": "69ddd8f2e91b418d29675cdab4a47c92e90b1154",
-      "sha256": "c6ccacdfc42edb475343bd653d313958852d141e9ae771a2ea96fe71bcad01c5"
+      "blob": "a688ac042357977c8b65f5bc7677fde462798cf6",
+      "sha256": "9d5021979d526f1d7292a957a9c66d3e09e2a335fd14272ad4da8f9bf07f92d0"
     },
     {
       "path": "distribution/THIRD_PARTY_NOTICES.md",
@@ -74,13 +74,13 @@
     },
     {
       "path": "distribution/release/VERSION",
-      "blob": "d917d3e26adc9854b4569871e20111c38de2606f",
-      "sha256": "297b50f08386d3521f8fdaf2f78eb8d9d0acdf452d2e61596905fba37208c792"
+      "blob": "b1e80bb2480a6db3c4b252661ac61ed945409b32",
+      "sha256": "2d2454ef0edeb462a6ce8b25d387aaa74df08093d5cea0428a10ce55510c6326"
     },
     {
       "path": "distribution/release/RELEASE_NOTES.md",
-      "blob": "dc2ba08f09f6c1c9b7228716d446b15ab6bfc1a6",
-      "sha256": "d5467d5d3867b26541bfa0e746e578ea9b7abdf0c09b2ad2ee182cdd5b73e2f7"
+      "blob": "5e4239f1c4f6963a24d58adc882af83716d84252",
+      "sha256": "f81e05ebf321c174a3c786b1a8e3129a5305bcf64c46e73f3df9732c13a409b3"
     },
     {
       "path": "distribution/release/LICENSE_REVIEW.md",
@@ -96,28 +96,28 @@
     },
     {
       "path": "dist/api.js",
-      "bytes": 8515,
-      "sha256": "d972c62ab6992820d311887ff9fcd16220b06f83c7e8b20e375a71672f1b1542"
+      "bytes": 10462,
+      "sha256": "5f36efc2217c4a846da4781e525b709a1686628f1b5405d51d11fbe3a6f81cae"
     },
     {
       "path": "dist/config.js",
-      "bytes": 1170,
-      "sha256": "5a7a63a3c9369510cebd812f2ed002fb8895659d84140f9c2f7d4242d8b1cfd7"
+      "bytes": 2047,
+      "sha256": "bae0c698266c9a2025ca62b03253af9d33c73492f8edc3dab6810adb2ff11108"
     },
     {
       "path": "dist/contracts.js",
-      "bytes": 10526,
-      "sha256": "ed2dc9ddf1072a01aa54d6120bb972dcde92a82913cc24f995dd4bee01d08722"
+      "bytes": 10709,
+      "sha256": "b7e1dd5b9913cc5b460f81007ea1c7fdac1603378c9aa7e4e56d77c37a45b4e9"
     },
     {
       "path": "dist/main.js",
-      "bytes": 1532,
-      "sha256": "518cf8a46555f77805b1375244e73da4a03b698b2659c72eb5d1a677ddab371d"
+      "bytes": 1893,
+      "sha256": "8d6a0c90895519c6805ff3d2a1e019e679801372318e9fa65ed531c26eb7bcdf"
     },
     {
       "path": "dist/revisions.js",
-      "bytes": 4703,
-      "sha256": "385a0465e4bfbf0d67064f96aabf6c0d6bd8ccac4bb518ca7e2a3b8c87978a0a"
+      "bytes": 5618,
+      "sha256": "1ad1e9f3dead258dd09299db80d9c8522c287caae0f49b4f51d91e286531d38a"
     },
     {
       "path": "dist/server.js",
@@ -132,17 +132,17 @@
     {
       "path": "package-lock.json",
       "bytes": 2116,
-      "sha256": "73ba01b971d0e64e731068991e75f91c2edf0dee399f837971dc88e941a08179"
+      "sha256": "32c23efe0a7c1c811c6dbdd0b1ec6eec0808b59cffdb7d478fd6ed72f979677c"
     },
     {
       "path": "package.json",
       "bytes": 635,
-      "sha256": "84862c4bba01c2d61636372c2e93e1eb194692690a943fea28fe8c67286d1c3e"
+      "sha256": "2f85de0e4361098203b5f85009dc35b3777b8569fe6fa18d0e0ce7d948e86f0c"
     },
     {
       "path": "README.md",
-      "bytes": 3733,
-      "sha256": "c6ccacdfc42edb475343bd653d313958852d141e9ae771a2ea96fe71bcad01c5"
+      "bytes": 4327,
+      "sha256": "9d5021979d526f1d7292a957a9c66d3e09e2a335fd14272ad4da8f9bf07f92d0"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",

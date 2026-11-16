@@ -16,7 +16,13 @@ function start() {
         report("invalid_config");
         return;
     }
-    const api = createApiClient(config, { fetch: globalThis.fetch });
+    const api = createApiClient(config, {
+        fetch: globalThis.fetch,
+        // Opt-in only: stderr is a closed lifecycle channel by default and the SDK
+        // gate asserts it stays empty during tool traffic. The code names the check,
+        // never a body, token, identity or task content.
+        ...(config.diagnostics ? { diagnose: (code) => { process.stderr.write(`invalid_response_${code}\n`); } } : {}),
+    });
     let handle;
     let closing;
     const close = () => closing ??= Promise.resolve()
